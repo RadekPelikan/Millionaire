@@ -81,10 +81,12 @@ const checkAnswer = () => {
 
     setTimeout(() => {
         HandleNextQuestion();
+        currentQ++;
     }, 1500)
 }
 
 window.onload = async () => {
     questionsJson = await readFile();
+    HandleNextQuestion();
     // console.log(questions);
 };
