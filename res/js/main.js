@@ -10,7 +10,7 @@ let isSwitching = false;
 
 const readFile = async () => {
     try {
-        const file = await fetch("/res/json/data.json");
+        const file = await fetch("_1_September-Millionaire/res/json/data.json");
         return await file.json();
     } catch (e) {
         return readFileGitHub();
@@ -19,7 +19,7 @@ const readFile = async () => {
 
 const readFileGitHub = async () => {
     try {
-        const file = await fetch("_1_September-Millionaire/res/json/data.json");
+        const file = await fetch("/res/json/data.json");
         return await file.json();
     } catch (e) {
         console.log(e);
