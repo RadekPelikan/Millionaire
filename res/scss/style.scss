@@ -1,18 +1,19 @@
-@import "bulma.scss";
+@import url("https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css");
+
 $base-color: #393e46;
 $darker-color: #222831;
-$highlight-color: #FFD369;
-$subtext-color: #EEEEEE;
+$highlight-color: #ffd369;
+$subtext-color: #eeeeee;
+
 html,
 body {
     margin: 0;
     padding: 0;
     height: 100vh;
-}
-
-body {
     background-color: $base-color;
 }
+
+
 
 @mixin center {
     display: flex;
@@ -24,6 +25,13 @@ body {
     width: 80vw;
     height: 5em;
     background-color: red;
+}
+
+#button-wrapper {
+    @include center();
+    width: 80vw;
+    height: 5em;
+    background-color: blue;
 }
 
 #contents {

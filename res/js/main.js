@@ -1,5 +1,5 @@
 const initSlide = document.getElementById("button");
-const levelBlock = document.getElementById("question-wrapper");
+const levelBlock = document.getElementById("level-wrapper");
 const questionText = document.getElementById("question");
 const buttonsBLock = document.getElementById("button-wrapper");
 let answerButtons = [];
@@ -29,7 +29,6 @@ const changeQuestionText = () => {
 
 const HandleNextQuestion = () => {
     // TODO: After clicking for new question increment the currentQ
-    // idk testing
     if (isSwitching) {
         return;
     }
@@ -38,9 +37,9 @@ const HandleNextQuestion = () => {
     isSwitching = true;
 
     setTimeout(() => {
-        // generateAnswerButtons();
         changeQuestionText();
-        // currentQ++;
+        generateButtons();
+        currentQ++;
     }, 500);
 
     setTimeout(() => {
@@ -50,17 +49,18 @@ const HandleNextQuestion = () => {
 };
 initSlide.onclick = HandleNextQuestion;
 
-const generateButtons = () => {
-    questions[currentQ]["answers"].forEach(text => createButton(text));
+const generateButtons = async () => {
+    answerButtons = [];
+    buttonsBLock.innerHTML = "";
+    await questions[currentQ]["answers"].forEach(text => createButton(text));
 }
 
 const createButton = (answerText) => {
     let button = document.createElement("button");
     buttonsBLock.appendChild(button);
-    button.innerText = text;
+    button.innerText = answerText;
     button.classList.add("button");
     answerButtons.push(button);
-
 };
 
 window.onload = async () => {
