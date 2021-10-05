@@ -29,6 +29,7 @@ const changeQuestionText = () => {
 
 const HandleNextQuestion = () => {
     // TODO: After clicking for new question increment the currentQ
+    // idk testing
     if (isSwitching) {
         return;
     }
