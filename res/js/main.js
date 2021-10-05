@@ -8,6 +8,7 @@ let answerButtons;
 let questionsJson;
 let currentQ = 0;
 let isSwitching = false;
+let hasAnswered = false;
 
 const readFile = async () => {
     try {
@@ -30,10 +31,7 @@ const changeQuestionText = () => {
 };
 
 const HandleNextQuestion = async () => {
-    // TODO: After clicking for new question increment the currentQ
-    if (isSwitching) {
-        return;
-    }
+    if (isSwitching) return;
 
     levelBlock.classList.add("next-question");
     isSwitching = true;
@@ -41,11 +39,12 @@ const HandleNextQuestion = async () => {
     await setTimeout(() => {
         changeQuestionText();
         generateButtons();
-    }, 500);
+    }, 1000);
 
     await setTimeout(() => {
         levelBlock.classList.remove("next-question");
         isSwitching = false;
+        hasAnswered = false;
     }, 2100);
 };
 initSlide.onclick = () => {
@@ -70,23 +69,23 @@ const createButton = (answerText, index) => {
 };
 
 const checkAnswer = () => {
+    if (hasAnswered) return;
+
     let button = event.target;
-    console.log(button);
-    console.log(parseInt(questionsJson[currentQ].correctAns) - 1)
     if (button.dataset.id == parseInt(questionsJson[currentQ].correctAns) - 1) {
         button.classList.add("is-success");
     } else {
         button.classList.add("is-danger")
     }
+    hasAnswered = true;
 
     setTimeout(() => {
         HandleNextQuestion();
         currentQ++;
-    }, 1500)
+    }, 1000)
 }
 
 window.onload = async () => {
     questionsJson = await readFile();
     HandleNextQuestion();
-    // console.log(questions);
 };
