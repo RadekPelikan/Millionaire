@@ -43,6 +43,10 @@ body {
     animation: slide 2s forwards;
 }
 
+#next-level {
+    display: none;
+}
+
 @keyframes slide {
     50% {
         transform: translateX(-100vw);

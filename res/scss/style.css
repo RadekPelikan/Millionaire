@@ -48,6 +48,10 @@ body {
           animation: slide 2s forwards;
 }
 
+#next-level {
+  display: none;
+}
+
 @-webkit-keyframes slide {
   50% {
     -webkit-transform: translateX(-100vw);
