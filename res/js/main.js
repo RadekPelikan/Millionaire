@@ -1,4 +1,4 @@
-const initSlide = document.getElementById("button");
+const initSlide = document.getElementById("next-level");
 const levelBlock = document.getElementById("level-wrapper");
 const questionText = document.getElementById("question");
 const buttonsBLock = document.getElementById("button-wrapper");
@@ -10,7 +10,8 @@ let isSwitching = false;
 
 const readFile = async () => {
     try {
-        const file = await fetch("res/json/data.json");
+        const file = await fetch("res/data/data.json");
+        console.log("Json load successful")
         return await file.json();
     } catch (e) {
         return readFileGitHub();
@@ -65,5 +66,5 @@ const createButton = (answerText) => {
 
 window.onload = async () => {
     questions = await readFile();
-    console.log(questions);
+    // console.log(questions);
 };
