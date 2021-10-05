@@ -1,6 +1,4 @@
 const initSlide = document.getElementById("button");
-
-
 const levelBlock = document.getElementById("level-wrapper");
 const questionText = document.getElementById("question");
 const buttonsBLock = document.getElementById("button-wrapper");
@@ -58,11 +56,12 @@ const HandleNextQuestion = async () => {
         isSwitching = false;
     }, 2100);
 };
+initSlide.onclick = HandleNextQuestion;
 
-const generateButtons = () => {
+const generateButtons = async () => {
     answerButtons = [];
     buttonsBLock.innerHTML = "";
-    questions[currentQ]["answers"].forEach(text => createButton(text));
+    await questions[currentQ]["answers"].forEach(text => createButton(text));
 }
 
 const createButton = (answerText) => {
@@ -72,8 +71,6 @@ const createButton = (answerText) => {
     button.classList.add("button");
     answerButtons.push(button);
 };
-
-initSlide.onclick = HandleNextQuestion;
 
 window.onload = async () => {
     questions = await readFile();
