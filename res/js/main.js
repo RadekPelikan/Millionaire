@@ -2,9 +2,10 @@ const initSlide = document.getElementById("next-level");
 const levelBlock = document.getElementById("level-wrapper");
 const questionText = document.getElementById("question");
 const buttonsBLock = document.getElementById("button-wrapper");
-let answerButtons = [];
-// TODO: Checking for corrent answer is -1, cuz it starts from. its 1 to `n`
-let questions;
+
+// TODO: Multiple correct answers
+let answerButtons;
+let questionsJson;
 let currentQ = 0;
 let isSwitching = false;
 
@@ -21,7 +22,7 @@ const readFile = async () => {
 const changeQuestionText = () => {
     let question;
     try {
-        question = questions[currentQ]["question"];
+        question = questionsJson[currentQ]["question"];
     } catch {
         question = "Už žádné otázky, došly";
     }
@@ -40,7 +41,6 @@ const HandleNextQuestion = async () => {
     await setTimeout(() => {
         changeQuestionText();
         generateButtons();
-        currentQ++;
     }, 500);
 
     await setTimeout(() => {
@@ -48,23 +48,43 @@ const HandleNextQuestion = async () => {
         isSwitching = false;
     }, 2100);
 };
-initSlide.onclick = HandleNextQuestion;
+initSlide.onclick = () => {
+    currentQ = 0;
+    HandleNextQuestion();
+};
 
 const generateButtons = async () => {
     answerButtons = [];
     buttonsBLock.innerHTML = "";
-    await questions[currentQ]["answers"].forEach(text => createButton(text));
+    await questionsJson[currentQ]["answers"].forEach((text, index) => createButton(text, index));
 }
 
-const createButton = (answerText) => {
+const createButton = (answerText, index) => {
     let button = document.createElement("button");
+    button.dataset.id = index;
+    button.onclick = checkAnswer;
     buttonsBLock.appendChild(button);
     button.innerText = answerText;
     button.classList.add("button");
     answerButtons.push(button);
 };
 
+const checkAnswer = () => {
+    let button = event.target;
+    console.log(button);
+    console.log(parseInt(questionsJson[currentQ].correctAns) - 1)
+    if (button.dataset.id == parseInt(questionsJson[currentQ].correctAns) - 1) {
+        button.classList.add("is-success");
+    } else {
+        button.classList.add("is-danger")
+    }
+
+    setTimeout(() => {
+        HandleNextQuestion();
+    }, 1500)
+}
+
 window.onload = async () => {
-    questions = await readFile();
+    questionsJson = await readFile();
     // console.log(questions);
 };

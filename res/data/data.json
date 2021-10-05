@@ -6,15 +6,25 @@
             "20",
             "rohlyk"
         ],
-        "correctAns": 4
+        "correctAns": 3
     },
     {
         "question": "Jak se má Adamec?",
         "answers": [
-            ":)",
-            ":)",
-            ":)",
-            "nn"
+            "nemá",
+            "má",
+            "existuje",
+            "hnědá"
+        ],
+        "correctAns": 1
+    },
+    {
+        "question": "Kdo je Pája?",
+        "answers": [
+            "GOD",
+            "legenda",
+            "borec nakonec",
+            "šoulin"
         ],
         "correctAns": 1
     }
