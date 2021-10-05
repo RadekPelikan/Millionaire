@@ -1,4 +1,6 @@
 const initSlide = document.getElementById("button");
+
+
 const levelBlock = document.getElementById("level-wrapper");
 const questionText = document.getElementById("question");
 const buttonsBLock = document.getElementById("button-wrapper");
@@ -13,14 +15,13 @@ const readFile = async () => {
         const file = await fetch("/res/json/data.json");
         return await file.json();
     } catch (e) {
-        readFileGitHub();
-        console.log(e);
+        return readFileGitHub();
     }
 };
 
 const readFileGitHub = async () => {
     try {
-        const file = await fetch("/_1_September-Millionaire/tree/main/res/json/data.json");
+        const file = await fetch("/_1_September-Millionaire/res/json/data.json");
         return await file.json();
     } catch (e) {
         console.log(e);
@@ -37,7 +38,7 @@ const changeQuestionText = () => {
     questionText.innerText = question;
 };
 
-const HandleNextQuestion = () => {
+const HandleNextQuestion = async () => {
     // TODO: After clicking for new question increment the currentQ
     if (isSwitching) {
         return;
@@ -46,23 +47,22 @@ const HandleNextQuestion = () => {
     levelBlock.classList.add("next-question");
     isSwitching = true;
 
-    setTimeout(() => {
+    await setTimeout(() => {
         changeQuestionText();
         generateButtons();
         currentQ++;
     }, 500);
 
-    setTimeout(() => {
+    await setTimeout(() => {
         levelBlock.classList.remove("next-question");
         isSwitching = false;
     }, 2100);
 };
-initSlide.onclick = HandleNextQuestion;
 
-const generateButtons = async () => {
+const generateButtons = () => {
     answerButtons = [];
     buttonsBLock.innerHTML = "";
-    await questions[currentQ]["answers"].forEach(text => createButton(text));
+    questions[currentQ]["answers"].forEach(text => createButton(text));
 }
 
 const createButton = (answerText) => {
@@ -72,6 +72,8 @@ const createButton = (answerText) => {
     button.classList.add("button");
     answerButtons.push(button);
 };
+
+initSlide.onclick = HandleNextQuestion;
 
 window.onload = async () => {
     questions = await readFile();
