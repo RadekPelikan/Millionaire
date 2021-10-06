@@ -5,6 +5,7 @@ $darker-color: #222831;
 $highlight-color: #ffd369;
 $subtext-color: #eeeeee;
 
+
 html,
 body {
     margin: 0;
@@ -14,28 +15,26 @@ body {
     overflow: hidden;
 }
 
-@mixin center {
-    display: flex;
-    justify-content: center;
+#level-wrapper {
+    z-index: 1;
+}
+
+#price-table {
+    z-index: 2;
+    background-color: $darker-color;
 }
 
 #question-wrapper {
-    @include center();
-    width: 80vw;
     height: 5em;
     background-color: red;
+    margin: 0;
 }
 
 #button-wrapper {
-    @include center();
-    width: 80vw;
-    height: 5em;
     background-color: blue;
 }
 
 #contents {
-    @include center();
-    width: 100%;
     border: 5px solid black;
 }
 
@@ -43,9 +42,10 @@ body {
     animation: slide 2s forwards;
 }
 
-#next-level {
-    display: none;
+.ans-button {
+    clear: both;
 }
+
 
 @keyframes slide {
     50% {

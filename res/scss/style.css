@@ -8,38 +8,26 @@ body {
   overflow: hidden;
 }
 
+#level-wrapper {
+  z-index: 1;
+}
+
+#price-table {
+  z-index: 2;
+  background-color: #222831;
+}
+
 #question-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 80vw;
   height: 5em;
   background-color: red;
+  margin: 0;
 }
 
 #button-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 80vw;
-  height: 5em;
   background-color: blue;
 }
 
 #contents {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 100%;
   border: 5px solid black;
 }
 
@@ -48,8 +36,8 @@ body {
           animation: slide 2s forwards;
 }
 
-#next-level {
-  display: none;
+.ans-button {
+  clear: both;
 }
 
 @-webkit-keyframes slide {
