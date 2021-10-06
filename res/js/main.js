@@ -1,13 +1,16 @@
 const levelBlock = document.getElementById("level-wrapper");
 const questionText = document.getElementById("question");
 const buttonsBlock = document.getElementById("button-wrapper");
+const priceTable = document.getElementById("price-table");
 
 // TODO: Multiple correct answers
 let answerButtons;
-let questionsJson;
+let dataJSON;
 let currentQ = 0;
 let isSwitching = false;
 let hasAnswered = false;
+let currentPrice = 0;
+let prices = [];
 
 const readFile = async () => {
     try {
@@ -15,14 +18,42 @@ const readFile = async () => {
         await console.log("Json load successful");
         return await file.json();
     } catch (e) {
-        return readFileGitHub();
+        console.log(e);
     }
+};
+
+const generatePriceTable = () => {
+    let multiplayer = 1;
+    let dataPrices = dataJSON.prices;
+    for (let i = 0; i < dataJSON.questions.length; i++) {
+        if (!Number.isInteger(dataPrices[i % dataPrices.length])) {
+            createPrice(dataPrices[i % dataPrices.length]);
+            dataPrices.pop();
+            continue;
+        }
+        createPrice(dataPrices[i % dataPrices.length] * multiplayer);
+        multiplayer *= i % 3 == 2 ? 10 : 1;
+    }
+};
+
+const createPrice = (value) => {
+    let price = document.createElement("h3");
+    price.classList.add(
+        "title",
+        "is-3",
+        "has-text-light",
+        "has-text-centered",
+        "my-4"
+    );
+    price.innerText = value;
+    prices.push(price);
+    priceTable.insertBefore(price, priceTable.firstChild);
 };
 
 const changeQuestionText = () => {
     let question;
     try {
-        question = questionsJson[currentQ]["question"];
+        question = dataJSON.questions[currentQ]["question"];
     } catch {
         question = "Už žádné otázky, došly";
     }
@@ -50,7 +81,7 @@ const HandleNextQuestion = async () => {
 const generateButtons = async () => {
     answerButtons = [];
     buttonsBlock.innerHTML = "";
-    await questionsJson[currentQ]["answers"].forEach((text, index) =>
+    await dataJSON.questions[currentQ]["answers"].forEach((text, index) =>
         createButton(text, index)
     );
 };
@@ -62,7 +93,7 @@ const createButton = (answerText, index) => {
     button.onclick = checkAnswer;
     button.innerText = answerText;
 
-    button.classList.add("button","is-fullwidth", "is-large", "my-3");
+    button.classList.add("button", "is-fullwidth", "is-large", "my-3");
 
     buttonsBlock.appendChild(button);
     answerButtons.push(button);
@@ -70,14 +101,23 @@ const createButton = (answerText, index) => {
 
 const checkAnswer = () => {
     if (hasAnswered) return;
+    hasAnswered = true;
 
     let button = event.target;
-    if (button.dataset.id == parseInt(questionsJson[currentQ].correctAns) - 1) {
+    if (
+        button.dataset.id ==
+        parseInt(dataJSON.questions[currentQ].correctAns) - 1
+    ) {
         button.classList.add("is-success");
+        prices[currentQ == 0 ? currentQ : currentQ - 1].classList.remove(
+            "has-text-warning"
+        );
+        prices[currentQ].classList.add("has-text-warning");
     } else {
         button.classList.add("is-danger");
+        questionText.innerText = "Prohral jsi looool";
+        return;
     }
-    hasAnswered = true;
 
     setTimeout(() => {
         HandleNextQuestion();
@@ -86,6 +126,7 @@ const checkAnswer = () => {
 };
 
 window.onload = async () => {
-    questionsJson = await readFile();
+    dataJSON = await readFile();
+    generatePriceTable();
     HandleNextQuestion();
 };

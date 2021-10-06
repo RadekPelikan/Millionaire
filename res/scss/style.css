@@ -12,6 +12,7 @@ body {
 }
 
 #price-table {
+  height: 100vh;
   z-index: 2;
   background-color: #222831;
 }

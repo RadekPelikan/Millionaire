@@ -1,31 +1,89 @@
-[{
-        "question": "Kolik je Honzíkovi Tillů?",
-        "answers": [
-            "děveť",
-            "69",
-            "20",
-            "rohlyk"
-        ],
-        "correctAns": 3
-    },
-    {
-        "question": "Jak se má Adamec?",
-        "answers": [
-            "nemá",
-            "má",
-            "existuje",
-            "hnědá"
-        ],
-        "correctAns": 1
-    },
-    {
-        "question": "Kdo je Pája?",
-        "answers": [
-            "GOD",
-            "legenda",
-            "borec nakonec",
-            "šoulin"
-        ],
-        "correctAns": 1
-    }
-]
+{
+    "prices": [
+        1000,
+        2500,
+        5000
+    ],
+    "questions": [
+        {
+            "question": "Kolik je Honzíkovi Tillů?",
+            "answers": [
+                "děveť",
+                "69",
+                "20",
+                "rohlyk"
+            ],
+            "correctAns": 3
+        },
+        {
+            "question": "Jak se má Adamec?",
+            "answers": [
+                "nemá",
+                "má",
+                "existuje",
+                "hnědá"
+            ],
+            "correctAns": 1
+        },
+        {
+            "question": "Kdo je Pája?",
+            "answers": [
+                "GOD",
+                "legenda",
+                "borec nakonec",
+                "šoulin"
+            ],
+            "correctAns": 1
+        },
+        {
+            "question": "Kdo je Pája?",
+            "answers": [
+                "GOD",
+                "legenda",
+                "borec nakonec",
+                "šoulin"
+            ],
+            "correctAns": 1
+        },
+        {
+            "question": "Kdo je Pája?",
+            "answers": [
+                "GOD",
+                "legenda",
+                "borec nakonec",
+                "šoulin"
+            ],
+            "correctAns": 1
+        },
+        {
+            "question": "Kdo je Pája?",
+            "answers": [
+                "GOD",
+                "legenda",
+                "borec nakonec",
+                "šoulin"
+            ],
+            "correctAns": 1
+        },
+        {
+            "question": "Kdo je Pája?",
+            "answers": [
+                "GOD",
+                "legenda",
+                "borec nakonec",
+                "šoulin"
+            ],
+            "correctAns": 1
+        },
+        {
+            "question": "Kdo je Pája?",
+            "answers": [
+                "GOD",
+                "legenda",
+                "borec nakonec",
+                "šoulin"
+            ],
+            "correctAns": 1
+        }
+    ]
+}
