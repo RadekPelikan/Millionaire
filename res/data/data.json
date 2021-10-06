@@ -21,59 +21,72 @@
                 "nemá",
                 "má",
                 "existuje",
-                "hnědá"
+                "ani jedno"
             ],
             "correctAns": "nemá"
         },
         {
             "question": "Kdo je Pája?",
             "answers": [
-                "GOD",
+                "těžkej síťař",
                 "legenda",
-                "borec nakonec",
-                "šoulin"
+                "frajer"
             ],
-            "correctAns": "GOD"
+            "correctAns": "legenda"
         },
         {
-            "question": "Kdo je Pája?",
+            "question": "Je meloun ovoce nebo zelenina?",
             "answers": [
-                "GOD",
-                "legenda",
-                "borec nakonec",
-                "šoulin"
+                "zelenina",
+                "ovoce",
+                "._.",
+                "Ano."
             ],
-            "correctAns": "GOD"
+            "correctAns": "Ano."
         },
         {
-            "question": "Kdo je Pája?",
+            "question": "Who better?",
             "answers": [
-                "GOD",
-                "legenda",
-                "borec nakonec",
-                "šoulin"
+                "gymplák",
+                "průmkař"
             ],
-            "correctAns": "GOD"
+            "correctAns": "průmkař"
         },
         {
-            "question": "Kdo je Pája?",
+            "question": "Kdo je sus?",
             "answers": [
-                "GOD",
-                "legenda",
-                "borec nakonec",
-                "šoulin"
+                "Till",
+                "Aškare",
+                "Lukyx or idk jak se to píše",
+                "Bohata 👀"
             ],
-            "correctAns": "GOD"
+            "correctAns": ""
         },
         {
-            "question": "Kdo je Pája?",
+            "question": "Kdo pomáhal Lukášovi s projektem a chcípal u toho?",
             "answers": [
-                "GOD",
-                "legenda",
-                "borec nakonec",
-                "šoulin"
+                "Radek"
             ],
-            "correctAns": "GOD"
+            "correctAns": "Radek"
+        },
+        {
+            "question": "Byl dobrej koňskej guláš?",
+            "answers": [
+                "jj",
+                "nn, moc tuhej"
+            ],
+            "correctAns": "jj"
+        },
+        {
+            "question": "Kolik dostanu bodů?",
+            "answers": [
+                "69",
+                "100",
+                "101",
+                "negr",
+                "151"
+            ],
+            "correctAns": "151"
         }
     ]
 }

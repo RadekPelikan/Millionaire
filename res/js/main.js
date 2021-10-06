@@ -57,7 +57,7 @@ const changeQuestionText = () => {
     try {
         question = dataJSON.questions[currentQ]["question"];
     } catch {
-        question = `Vyhrál jsi ${currentPrice}`;
+        question = `Tož vyhrals majlant: ${currentPrice}`;
     }
     questionText.innerText = question;
 };
@@ -71,6 +71,9 @@ const HandleNextQuestion = async () => {
     await setTimeout(() => {
         changeQuestionText();
         generateButtons();
+        document
+            .getElementById("question-wrapper")
+            .classList.add("darker-color");
     }, 1000);
 
     await setTimeout(() => {
@@ -83,10 +86,10 @@ const HandleNextQuestion = async () => {
 const generateButtons = async () => {
     answerButtons = [];
     buttonsBlock.innerHTML = "";
-    currentButtons = await dataJSON.questions[currentQ]["answers"].sort((a, b) => 0.5 - Math.random());
-    await currentButtons.forEach((text, index) =>
-        createButton(text, index)
+    currentButtons = await dataJSON.questions[currentQ]["answers"].sort(
+        (a, b) => 0.5 - Math.random()
     );
+    await currentButtons.forEach((text, index) => createButton(text, index));
 };
 
 const createButton = (answerText, index) => {
@@ -96,7 +99,13 @@ const createButton = (answerText, index) => {
     button.onclick = checkAnswer;
     button.innerText = answerText;
 
-    button.classList.add("button", "is-fullwidth", "is-large", "my-3",ansButtonColor);
+    button.classList.add(
+        "button",
+        "is-fullwidth",
+        "is-large",
+        "my-3",
+        ansButtonColor
+    );
 
     buttonsBlock.appendChild(button);
     answerButtons.push(button);
@@ -108,24 +117,24 @@ const checkAnswer = () => {
 
     let button = event.target;
     button.classList.remove(ansButtonColor);
-    if (
-        button.innerHTML == dataJSON.questions[currentQ].correctAns
-    ) {
+
+    if (currentQ != 0) {
+        prices[currentQ - 1].classList.remove("highlight-price", "is-2");
+        prices[currentQ - 1].classList.add("is-3");
+    }
+
+    if (button.innerHTML.includes(dataJSON.questions[currentQ].correctAns)) {
         button.classList.add("is-success");
-        
+
         prices[currentQ].classList.add("highlight-price", "is-1");
         prices[currentQ].classList.remove("has-text-light", "is-3");
 
         currentPrice = prices[currentQ].innerHTML;
 
-        if (currentQ != 0) {
-            prices[currentQ - 1].classList.remove("highlight-price", "is-2")
-            prices[currentQ - 1].classList.add("is-3")
-        }
-
+        
     } else {
         button.classList.add("is-danger");
-        questionText.innerText = "Prohral jsi looool";
+        questionText.innerText = "Tož si dochodil";
         return;
     }
 
@@ -138,6 +147,6 @@ const checkAnswer = () => {
 window.onload = async () => {
     dataJSON = await readFile();
     generatePriceTable();
-    HandleNextQuestion();
-    console.log(dataJSON)
+    await HandleNextQuestion();
+    console.log(dataJSON);
 };

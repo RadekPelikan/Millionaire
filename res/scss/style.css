@@ -5,6 +5,7 @@ body {
   padding: 0;
   height: 100vh;
   background-color: #393e46;
+  overflow-x: hidden;
 }
 
 #level-wrapper {
@@ -12,14 +13,31 @@ body {
 }
 
 #price-table {
-  height: 100vh;
+  height: 105vh;
   z-index: 2;
+  background-color: #222831;
+  opacity: 0.8;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.darker-color {
   background-color: #222831;
 }
 
 #question-wrapper {
   min-height: 5em;
-  background-color: #222831;
   margin: 0;
 }
 
@@ -37,7 +55,7 @@ body {
 }
 
 @-webkit-keyframes slide {
-  49% {
+  50% {
     -webkit-transform: translateX(-100vw);
             transform: translateX(-100vw);
     -webkit-animation-timing-function: steps(1, end);
@@ -50,7 +68,7 @@ body {
 }
 
 @keyframes slide {
-  49% {
+  50% {
     -webkit-transform: translateX(-100vw);
             transform: translateX(-100vw);
     -webkit-animation-timing-function: steps(1, end);
