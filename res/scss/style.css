@@ -5,7 +5,6 @@ body {
   padding: 0;
   height: 100vh;
   background-color: #393e46;
-  overflow: hidden;
 }
 
 #level-wrapper {
