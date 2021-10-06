@@ -11,6 +11,8 @@ let isSwitching = false;
 let hasAnswered = false;
 let currentPrice = 0;
 let prices = [];
+let currentButtons = [];
+let ansButtonColor = "has-background-grey-lighter";
 
 const readFile = async () => {
     try {
@@ -26,7 +28,7 @@ const generatePriceTable = () => {
     let multiplayer = 1;
     let dataPrices = dataJSON.prices;
     for (let i = 0; i < dataJSON.questions.length; i++) {
-        if (!Number.isInteger(dataPrices[i % dataPrices.length])) {
+        if (isNaN(dataPrices[i % dataPrices.length])) {
             createPrice(dataPrices[i % dataPrices.length]);
             dataPrices.pop();
             continue;
@@ -55,7 +57,7 @@ const changeQuestionText = () => {
     try {
         question = dataJSON.questions[currentQ]["question"];
     } catch {
-        question = "Už žádné otázky, došly";
+        question = `Vyhrál jsi ${currentPrice}`;
     }
     questionText.innerText = question;
 };
@@ -81,7 +83,8 @@ const HandleNextQuestion = async () => {
 const generateButtons = async () => {
     answerButtons = [];
     buttonsBlock.innerHTML = "";
-    await dataJSON.questions[currentQ]["answers"].forEach((text, index) =>
+    currentButtons = await dataJSON.questions[currentQ]["answers"].sort((a, b) => 0.5 - Math.random());
+    await currentButtons.forEach((text, index) =>
         createButton(text, index)
     );
 };
@@ -93,7 +96,7 @@ const createButton = (answerText, index) => {
     button.onclick = checkAnswer;
     button.innerText = answerText;
 
-    button.classList.add("button", "is-fullwidth", "is-large", "my-3");
+    button.classList.add("button", "is-fullwidth", "is-large", "my-3",ansButtonColor);
 
     buttonsBlock.appendChild(button);
     answerButtons.push(button);
@@ -104,15 +107,22 @@ const checkAnswer = () => {
     hasAnswered = true;
 
     let button = event.target;
+    button.classList.remove(ansButtonColor);
     if (
-        button.dataset.id ==
-        parseInt(dataJSON.questions[currentQ].correctAns) - 1
+        button.innerHTML == dataJSON.questions[currentQ].correctAns
     ) {
         button.classList.add("is-success");
-        prices[currentQ == 0 ? currentQ : currentQ - 1].classList.remove(
-            "has-text-warning"
-        );
-        prices[currentQ].classList.add("has-text-warning");
+        
+        prices[currentQ].classList.add("highlight-price", "is-1");
+        prices[currentQ].classList.remove("has-text-light", "is-3");
+
+        currentPrice = prices[currentQ].innerHTML;
+
+        if (currentQ != 0) {
+            prices[currentQ - 1].classList.remove("highlight-price", "is-2")
+            prices[currentQ - 1].classList.add("is-3")
+        }
+
     } else {
         button.classList.add("is-danger");
         questionText.innerText = "Prohral jsi looool";
@@ -129,4 +139,5 @@ window.onload = async () => {
     dataJSON = await readFile();
     generatePriceTable();
     HandleNextQuestion();
+    console.log(dataJSON)
 };

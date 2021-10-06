@@ -13,7 +13,7 @@
                 "20",
                 "rohlyk"
             ],
-            "correctAns": 3
+            "correctAns": "20"
         },
         {
             "question": "Jak se má Adamec?",
@@ -23,7 +23,7 @@
                 "existuje",
                 "hnědá"
             ],
-            "correctAns": 1
+            "correctAns": "nemá"
         },
         {
             "question": "Kdo je Pája?",
@@ -33,7 +33,7 @@
                 "borec nakonec",
                 "šoulin"
             ],
-            "correctAns": 1
+            "correctAns": "GOD"
         },
         {
             "question": "Kdo je Pája?",
@@ -43,7 +43,7 @@
                 "borec nakonec",
                 "šoulin"
             ],
-            "correctAns": 1
+            "correctAns": "GOD"
         },
         {
             "question": "Kdo je Pája?",
@@ -53,7 +53,7 @@
                 "borec nakonec",
                 "šoulin"
             ],
-            "correctAns": 1
+            "correctAns": "GOD"
         },
         {
             "question": "Kdo je Pája?",
@@ -63,7 +63,7 @@
                 "borec nakonec",
                 "šoulin"
             ],
-            "correctAns": 1
+            "correctAns": "GOD"
         },
         {
             "question": "Kdo je Pája?",
@@ -73,17 +73,7 @@
                 "borec nakonec",
                 "šoulin"
             ],
-            "correctAns": 1
-        },
-        {
-            "question": "Kdo je Pája?",
-            "answers": [
-                "GOD",
-                "legenda",
-                "borec nakonec",
-                "šoulin"
-            ],
-            "correctAns": 1
+            "correctAns": "GOD"
         }
     ]
 }

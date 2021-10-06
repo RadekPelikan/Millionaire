@@ -18,13 +18,9 @@ body {
 }
 
 #question-wrapper {
-  height: 5em;
-  background-color: red;
+  min-height: 5em;
+  background-color: #222831;
   margin: 0;
-}
-
-#button-wrapper {
-  background-color: blue;
 }
 
 #contents {
@@ -36,8 +32,8 @@ body {
           animation: slide 2s forwards;
 }
 
-.ans-button {
-  clear: both;
+.highlight-price {
+  color: #ffd369;
 }
 
 @-webkit-keyframes slide {

@@ -25,14 +25,14 @@ body {
 }
 
 #question-wrapper {
-    height: 5em;
-    background-color: red;
+    min-height: 5em;;
+    background-color: $darker-color;
     margin: 0;
 }
 
-#button-wrapper {
-    background-color: blue;
-}
+// #button-wrapper {
+//     background-color: blue;
+// }
 
 #contents {
     border: 5px solid black;
@@ -42,8 +42,8 @@ body {
     animation: slide 2s forwards;
 }
 
-.ans-button {
-    clear: both;
+.highlight-price {
+    color: $highlight-color;
 }
 
 
